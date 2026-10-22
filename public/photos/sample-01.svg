@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="海边的清晨，抽象插画">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9e9ec"/><stop offset=".55" stop-color="#f4d8c2"/><stop offset="1" stop-color="#f2b38d"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fa8b2"/><stop offset="1" stop-color="#345e6b"/></linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="880" cy="250" r="74" fill="#fff3d9" opacity=".9"/>
+  <path d="M0 470h1200v330H0z" fill="url(#sea)"/>
+  <path d="M0 470c120 18 220 18 340 0s240 18 360 0 260 18 500-4v34c-240 22-380 4-500 4s-240 18-360 0-220-18-340 0z" fill="#e9f3f2" opacity=".75"/>
+  <path d="M0 560c160 20 260-12 420 2s250 28 410 6 250-16 370-2" stroke="#b9d8da" stroke-width="5" fill="none" opacity=".5"/>
+  <path d="M140 640l70-8 46 22-92 10z" fill="#263e45"/>
+  <path d="M154 632l38-70 10 2-18 68z" fill="#263e45"/>
+  <text x="70" y="740" fill="#f7f1e8" font-family="Georgia, serif" font-size="28" opacity=".8">SAMPLE 01 · MORNING TIDE</text>
+  <text x="70" y="92" fill="#263e45" font-family="Georgia, serif" font-size="20" letter-spacing="6" opacity=".55">PHOTO JOURNAL</text>
+</svg>

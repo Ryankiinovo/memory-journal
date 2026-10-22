@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 800" role="img" aria-label="雨后的便利店，抽象插画">
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3e4a"/><stop offset="1" stop-color="#121d25"/></linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffeab5"/><stop offset="1" stop-color="#e8a95c"/></linearGradient>
+  </defs>
+  <rect width="1100" height="800" fill="url(#night)"/>
+  <rect x="260" y="220" width="580" height="330" rx="4" fill="#f5f1e5"/>
+  <rect x="286" y="248" width="528" height="190" fill="url(#glow)"/>
+  <g fill="#b9603f"><rect x="320" y="286" width="80" height="110"/><rect x="430" y="286" width="80" height="110"/><rect x="540" y="286" width="80" height="110"/><rect x="650" y="286" width="80" height="110"/></g>
+  <path d="M180 650h740v150H180z" fill="#293943"/>
+  <path d="M80 690h200l40 80H40z" fill="#1a272f"/>
+  <g stroke="#b9d6dd" stroke-width="3" opacity=".65" stroke-linecap="round">
+    <path d="M700 60l-16 130"/><path d="M760 20l-20 150"/><path d="M820 70l-14 120"/><path d="M880 30l-18 140"/><path d="M640 90l-12 110"/>
+  </g>
+  <g fill="#ffe6a8" opacity=".75"><circle cx="330" cy="700" r="4"/><circle cx="430" cy="740" r="3"/><circle cx="560" cy="710" r="5"/><circle cx="700" cy="750" r="3"/></g>
+  <text x="70" y="750" fill="#f3ead7" font-family="Georgia, serif" font-size="26" opacity=".85">SAMPLE 05 · AFTER THE RAIN</text>
+</svg>
