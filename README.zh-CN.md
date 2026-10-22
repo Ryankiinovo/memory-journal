@@ -4,6 +4,8 @@
 
 ![预览](assets/preview.png)
 
+在线预览：<https://ryankiinovo.github.io/photo-journal-starter/>
+
 ## 包含什么
 
 - 照片网格：相册、收藏、搜索、按时间的回顾视图

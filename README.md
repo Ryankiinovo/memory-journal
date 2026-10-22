@@ -4,6 +4,8 @@ A local-first photo journal built with React and Vite. Browse a photo library, o
 
 ![Preview](assets/preview.png)
 
+Demo: <https://ryankiinovo.github.io/photo-journal-starter/>
+
 ## What is included
 
 - Photo grid with albums, favorites, search, and a date-based recall view
