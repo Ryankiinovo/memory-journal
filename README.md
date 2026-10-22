@@ -1,6 +1,6 @@
-# Photo Journal Starter
+# 记忆随笔 · Memory Journal
 
-A local-first photo journal built with React and Vite. Browse a photo library, open a photo, write a note beside it, pin details, and draw on the image. All demo content is synthetic; replace it with your own.
+A local-first memory journal built with React and Vite. Browse a photo library, open a photo, write a note beside it, pin details, and draw on the image. Demo notes are fictional and the demo photos are placeholders for layout; replace them with your own.
 
 ![Preview](assets/preview.png)
 
@@ -12,7 +12,7 @@ Demo: <https://ryankiinovo.github.io/photo-journal-starter/>
 - Photo editor with three layouts, pins, freehand drawing, notes, and tags
 - Notes view that collects every photo with writing
 - Local-first persistence via `localStorage`
-- Six synthetic SVG demo photos, no third-party image assets
+- Eight demo JPG photos, included only to show the layout
 - Responsive layout; no backend and no API keys
 
 ## Quick start
@@ -33,7 +33,7 @@ Requires Node.js 20 or newer.
 ├── index.html
 ├── package.json
 ├── vite.config.js
-├── public/photos/       # demo SVG images
+├── public/photos/       # demo JPG images (replace with your own)
 └── src/
     ├── main.jsx         # app, components, seed data
     └── styles.css
@@ -54,7 +54,7 @@ Uploaded files are previewed with `URL.createObjectURL`; they are not uploaded a
 
 ## Privacy and assets
 
-This starter ships no personal photos, analytics, cookies, or network calls to an application backend. The demo images are original SVG illustrations created for this repository. If you add photos, check that you have the right to publish them.
+This starter ships no analytics, cookies, or network calls to an application backend. The demo photos and notes are included only to demonstrate the interface; they are not a personal archive. If you reuse the template, replace `public/photos/` and `seedPhotos` with your own content, and check that you have the right to publish every image.
 
 ## License
 
