@@ -6,7 +6,7 @@
 
 ![预览](assets/preview.png)
 
-在线预览：<https://ryankiinovo.github.io/photo-journal-starter/>
+在线预览：<https://ryankiinovo.github.io/memory-journal/>
 
 ## 包含什么
 

@@ -6,7 +6,7 @@ A local-first memory journal built with React and Vite. Browse a photo library, 
 
 ![Preview](assets/preview.png)
 
-Demo: <https://ryankiinovo.github.io/photo-journal-starter/>
+Demo: <https://ryankiinovo.github.io/memory-journal/>
 
 ## What is included
 

@@ -12,7 +12,7 @@ import { seedPhotos } from './sample-content.js'
 const albumPalette = ['#ef715d', '#71a8b8', '#b7a063', '#8a9a5b']
 
 function Logo() {
-  return <div className="logo" aria-label="记忆随笔首页"><span className="logo-mark"><i></i><i></i></span><b>记忆随笔</b><small>MEMORY NOTES</small></div>
+  return <div className="logo" aria-label="记忆随笔首页"><span className="logo-mark"><i></i><i></i></span><b>记忆随笔</b><small>MEMORY JOURNAL</small></div>
 }
 
 function App() {
