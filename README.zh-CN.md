@@ -1,66 +1,48 @@
 # 记忆随笔 · Memory Journal
 
-[English](README.md) · **简体中文**
+[English](./README.md) | 简体中文
 
-一个用 React + Vite 写的本地优先照片随笔模板：浏览相册、打开照片、在旁边写一段话、加标注、在图片上画线。示例文案是虚构的，示例照片只用于展示版式；文案与标注集中在 `src/sample-content.js`，整段替换成你自己的内容即可。
+以城市为线索的本地影像随笔：照片按城市收纳，每个故事由多个页面组成，可阅读、可编辑、可放映。纯静态，无构建、无后端、不上传。
 
-![预览](assets/preview.png)
+## 特点
 
-在线预览：<https://ryankiinovo.github.io/memory-journal/>
-
-## 包含什么
-
-- 照片网格：相册、收藏、搜索、按时间的回顾视图
-- 照片编辑器：三种布局、图片标注、自由画笔、随笔与标签
-- 随笔视图：集中展示所有写过文字的照片
-- 使用 `localStorage` 的本地优先存储
-- 8 张 JPG 示例照片，只用于展示版式
-- 响应式布局，无后端、无 API Key
+- **城市优先**：城市记忆库 → 城市页 → 故事 → 页面。
+- **八种版式**：整页大图、左图右文、左文右图、上图下文、双图、纯文字、全屏照片等。
+- **纯静态**：三个文件加一个照片目录，任意静态服务器即可打开。
+- **本地优先**：编辑只在内存中预览，刷新重置；照片不会上传。
 
 ## 快速开始
 
 ```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # 产物在 dist/
-npm run preview
+cd memory-journal
+python3 -m http.server 8080
+# 打开 http://127.0.0.1:8080
 ```
 
-需要 Node.js 20 或更新版本。
+## 换成你自己的内容
+
+1. 把照片放进 `assets/photos/`（JPG，建议最长边 1600px）。
+2. 只改 `content.js`：站点文案、照片清单、页面数据都在这个文件里。
+3. 页面 `layout` 取 1–8（对应 `app.js` 的 `layoutNames`），`photos` 是照片数组下标。
 
 ## 目录
 
 ```text
-.
-├── index.html
-├── package.json
-├── vite.config.js
-├── public/photos/       # 示例 JPG 图片（替换成你自己的）
-└── src/
-    ├── main.jsx         # 应用与组件
-    ├── sample-content.js # 示例文案（虚构，整段可替换）
-    └── styles.css
+index.html      所有界面的结构
+app.js          状态、阅读/编辑/放映、搜索
+styles.css      设计变量与响应式规则
+content.js      内容（只改这一个文件）
+assets/photos/  示例照片
 ```
 
-## 改成你的相册
+## 部署到 GitHub Pages
 
-1. 把 `public/photos/` 里的文件换成你的照片；保留文件名，或同步修改 `src/sample-content.js` 里的 `src`。
-2. 只改 `src/sample-content.js`：标题、日期、地点、相册、随笔、标签与标注都集中在这一个文件里；可以增减条目，页面会自动适配。
-3. 修改 `Logo` 组件和 `index.html` 里的品牌名。
-4. 在 `src/styles.css` 的 `:root` 里调整配色。
+推到 `main` 分支即可，`.github/workflows/deploy.yml` 直接把仓库根目录发布出去（无构建）。首次需要在 **Settings → Pages → Source** 选 **GitHub Actions**。
 
-示例文案目前是虚构的，只用于演示版式；换成真实文案前，请确认你有权公开对应的照片与文字。页面首次加载会把示例数据写进 `localStorage`，替换文案后若仍看到旧内容，清掉该站点的本地存储，或修改 `src/main.jsx` 里的 `memory-journal-v1` key。
+## 隐私与示例内容
 
-上传文件只通过 `URL.createObjectURL` 在本地预览，不会上传到任何服务器；刷新页面后 blob URL 会失效。如果需要持久化，请把 `seedPhotos` 换成自己的存储层。
-
-## 部署
-
-`npm run build` 生成静态 `dist/`。`vite.config.js` 设置了 `base: './'`，因此可以部署在 GitHub Pages 这类子路径下，也可以放到任意静态托管。
-
-## 隐私与素材
-
-模板不包含统计脚本、Cookie，也不会向应用后端发请求。示例照片与文案只用于演示界面，不是个人相册。复用模板时，请替换 `public/photos/` 和 `src/sample-content.js`，并确认你有权公开每一张图片与每一段文字。
+示例照片为作者本人拍摄，随模板一同授权用于版式演示；文案为演示用的示例文字。站点不上传任何文件，编辑只在浏览器内存中进行。正式使用前请把照片与文案都换成自己的。
 
 ## 许可证
 
-MIT，见 `LICENSE`。
+MIT，见 [LICENSE](./LICENSE)。

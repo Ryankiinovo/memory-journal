@@ -1,14 +1,254 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#eef2f4" />
-    <meta name="description" content="记忆随笔 — 用照片和文字记录日常的本地相册模板" />
-    <title>记忆随笔 · Memory Journal</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="记忆随笔：以城市为线索，收纳照片、随笔与时间的私人影像相册。" />
+  <title>记忆随笔 · 影像随笔相册</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23211f1b'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='%23fffdf8' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./styles.css?v=20261023b" />
+</head>
+<body>
+  <!-- 城市记忆库 -->
+  <section id="screen-library" class="screen active">
+    <header class="topnav">
+      <div class="container">
+        <button class="logo" type="button" onclick="showScreen('library')">记忆随笔</button>
+        <div class="search-wrap">
+          <label>
+            <span class="sr-only">搜索故事、地点或随笔</span>
+            <input id="search-input" class="search" type="search" placeholder="搜索故事、地点或随笔" autocomplete="off" aria-controls="search-results" aria-expanded="false" />
+          </label>
+          <div id="search-results" class="search-results" role="listbox" hidden></div>
+        </div>
+        <div class="row" style="gap:10px">
+          <span class="meta">影像随笔</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container memory-main">
+      <div class="memory-intro">
+        <div>
+          <p class="meta">城市记忆库</p>
+          <h1>城市记忆</h1>
+        </div>
+        <div>
+          <p>以城市为线索，收纳照片、随笔与时间。每一段故事由多个可阅读、可播放的页面组成。</p>
+          <button class="btn btn-primary" style="margin-top:22px" type="button" onclick="openCreateFlow()">＋ 新建故事</button>
+        </div>
+      </div>
+
+      <article class="city-hero" tabindex="0" role="button" aria-label="进入城市记忆" onclick="showScreen('city')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showScreen('city')}">
+        <img id="hero-image" src="./assets/photos/memory-01.jpg" width="1600" height="893" alt="" fetchpriority="high" />
+        <div class="city-hero-info">
+          <p class="meta">唯一已收录城市</p>
+          <h2 id="hero-city">天津</h2>
+          <div class="city-line"><span id="city-memory-meta">1 个故事 · 21 张照片 · 刚刚编辑</span><span class="open-city">进入城市 →</span></div>
+        </div>
+      </article>
+      <div class="library-note"><span id="library-note">海河、桥、钟表与夜色</span><span id="library-count">照片 21 · 故事 8 页 · 2026 年冬</span></div>
+    </main>
+    <footer class="site-footer"><div class="container"><span>记忆随笔 · 城市、照片与时间</span><span>本地预览 · 照片不会上传</span></div></footer>
+  </section>
+
+  <!-- 城市页 -->
+  <section id="screen-city" class="screen">
+    <header class="topnav">
+      <div class="container">
+        <button class="btn btn-quiet" type="button" onclick="showScreen('library')">← 城市记忆</button>
+        <button class="btn btn-primary" type="button" onclick="openCreateFlow()">＋ 新建故事</button>
+      </div>
+    </header>
+    <main class="container city-main">
+      <nav class="crumbs" aria-label="当前位置"><button type="button" onclick="showScreen('library')">城市记忆</button><span>/</span><strong id="crumb-city">天津</strong></nav>
+      <div class="city-heading">
+        <div><p class="meta" id="city-meta">1 个故事 · 8 张照片</p><h1 id="city-title">天津</h1></div>
+        <p id="city-summary">海河穿过夜色，桥与钟把行走的路线留在水面。这里收录在天津拍下的一个完整故事。</p>
+      </div>
+      <article class="story-feature">
+        <div class="story-feature-media" tabindex="0" role="button" aria-label="阅读海河入夜" onclick="openReaderAt(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openReaderAt(0)}">
+          <img id="story-feature-image" src="./assets/photos/memory-01.jpg" width="1600" height="893" alt="" />
+        </div>
+        <div class="story-feature-copy">
+          <p id="primary-album-meta" class="meta">8 页 · 8 张照片 · 刚刚编辑</p>
+          <h2 id="story-title">海河入夜</h2>
+          <p class="story-summary" id="story-summary">从黄昏走到午夜。没有赶路，只沿着海河看桥灯亮起，看城市在水里出现另一遍。</p>
+          <div class="story-actions">
+            <button class="btn btn-primary" type="button" onclick="openReaderAt(0)">开始阅读</button>
+            <button class="btn" type="button" onclick="openEditorAt(0)">编辑页面</button>
+            <button class="btn btn-quiet" type="button" onclick="openSlideshowAt(0)">播放</button>
+          </div>
+          <div class="chapter-list" id="chapter-list" aria-label="故事章节">
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer"><div class="container"><span>记忆随笔 · 城市、照片与时间</span><span id="footer-city">天津 · 2026 年冬</span></div></footer>
+  </section>
+
+  <!-- 添加照片（示例流程） -->
+  <section id="screen-upload" class="screen">
+    <main class="container upload-main">
+      <button id="upload-back" class="back-link btn-quiet" type="button" onclick="returnFromUpload()">← 返回天津</button>
+      <div class="upload-title">
+        <p id="upload-crumb" class="meta">城市记忆 / 天津 / 海河入夜</p>
+        <h1>添加照片</h1>
+        <p>选择构成这个故事的照片，之后仍然可以继续添加。</p>
+        <p class="demo-note" id="demo-note">示例流程 · 使用 21 张天津照片 · 不会上传</p>
+      </div>
+      <div id="dropzone" class="dropzone">
+        <div><strong>将照片拖到这里</strong><p>支持 JPG、PNG、HEIC</p><button class="btn btn-primary" type="button" onclick="selectDemoPhotos()">载入示例照片</button></div>
+      </div>
+      <div id="selection-area" hidden>
+        <div class="row-between upload-toolbar"><strong>已选择 <span class="num" id="upload-count">21</span> 张照片</strong><label class="row"><span class="meta">排序</span><select><option>按拍摄时间</option><option>按添加顺序</option></select></label></div>
+        <div id="upload-thumbs" class="thumb-grid"></div>
+        <div class="upload-footer">
+          <button id="upload-footer-back" class="btn" type="button" onclick="returnFromUpload()">返回天津</button>
+          <button class="btn btn-primary" type="button" onclick="createPagesFromDemo()">载入示例页面</button>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- 编辑页（桌面） -->
+  <section id="screen-editor" class="screen">
+    <header class="editor-toolbar">
+      <div class="left">
+        <button id="editor-back" class="btn btn-quiet" type="button" onclick="showScreen('city')">← 天津</button>
+        <span class="editor-crumb" id="editor-crumb">城市记忆 / 天津 / <strong>海河入夜</strong> / <span id="editor-crumb-page">页面 04</span></span>
+      </div>
+      <span class="save-state">本次预览 · 刷新重置</span>
+      <div class="right">
+        <button class="btn btn-quiet" type="button" onclick="openModal('add-content-modal')">＋ 添加内容</button>
+        <button class="btn btn-quiet" type="button" onclick="openPhotoPicker()">替换照片</button>
+        <button class="btn" type="button" onclick="openReaderAt(currentPage)">预览</button>
+        <button class="btn btn-primary" type="button" onclick="openSlideshow()">▶ 播放</button>
+        <button class="icon-btn" type="button" aria-label="更多" onclick="toast('更多设置将在下一版加入')">···</button>
+      </div>
+    </header>
+    <div class="editor-shell">
+      <aside class="page-nav">
+        <div class="row-between panel-head"><strong>页面</strong><button class="icon-btn" type="button" onclick="addPage()" aria-label="新增页面">＋</button></div>
+        <div id="page-list" class="page-list"></div>
+      </aside>
+      <main class="canvas-area">
+        <div class="canvas-top"><span id="page-position" class="meta">页面 04 · 16:9</span><button class="btn btn-quiet" type="button" onclick="openModal('add-content-modal')">＋ 添加内容</button></div>
+        <article id="canvas" class="canvas layout-1">
+          <div class="canvas-photo selected-block" onclick="selectBlock('image', this)">
+            <img id="story-image" class="story-img" src="./assets/photos/memory-04.jpg" width="1600" height="893" alt="" />
+            <img id="story-image-secondary" class="story-img secondary" src="./assets/photos/memory-05.jpg" width="1600" height="893" alt="" />
+          </div>
+          <div class="canvas-copy" onclick="selectBlock('text', this)">
+            <div class="canvas-meta"><span id="canvas-place">天津 · 海河</span><span id="canvas-date">2026.02.21</span></div>
+            <h2 id="canvas-title" contenteditable="true">光落在水面上</h2>
+            <p id="essay-text" class="essay" contenteditable="true">傍晚沿着海河慢慢走，天色比想象中暗得更快。
+
+桥上的灯亮起来以后，水面把整座城市重新画了一遍。
+
+我们没有急着去下一处，只在风里站了一会儿。</p>
+            <p class="canvas-foot"><span id="canvas-time">21:56</span>　<span id="canvas-foot-place">海河 · 天津</span></p>
+          </div>
+        </article>
+        <span class="meta">点击画面中的图片或文字进行编辑</span>
+      </main>
+      <aside class="inspector">
+        <div class="inspector-tabs"><button class="inspector-tab active" type="button" data-panel="layout" onclick="switchInspector('layout')">布局</button><button class="inspector-tab" type="button" data-panel="image" onclick="switchInspector('image')">照片</button><button class="inspector-tab" type="button" data-panel="text" onclick="switchInspector('text')">文字</button></div>
+        <div id="inspector-layout" class="inspector-view active"><div class="layout-grid"></div></div>
+        <div id="inspector-image" class="inspector-view">
+          <button class="btn" style="width:100%" type="button" onclick="openPhotoPicker()">替换当前照片</button>
+          <div class="control-row"><label>当前照片</label><p id="inspector-photo-name" class="meta">天津海河水面中的红色灯光倒影</p></div>
+          <div class="control-row"><label for="note">图片注释</label><textarea id="note" class="textarea">灯光在水里断开，又被下一阵波纹接起来。</textarea></div>
+          <div class="notice">照片替换与页面版式会即时同步到预览和阅读模式。</div>
+        </div>
+        <div id="inspector-text" class="inspector-view">
+          <p class="meta">文字可以直接在画布中点击修改。</p>
+          <div class="control-row"><label>当前页面</label><p id="inspector-page-title" style="margin:0;font-size:14px">光落在水面上</p></div>
+          <div class="notice">正文、标题和注释会随页面一起保存到本次预览。</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 阅读模式 -->
+  <section id="screen-reader" class="screen">
+    <div id="reader-bar" class="reader-bar">
+      <button id="reader-back" class="btn btn-quiet" type="button" onclick="exitReader()">← 返回</button>
+      <button class="icon-btn" type="button" aria-label="上一页" onclick="readerGo(-1)">←</button>
+      <span id="reader-count" class="meta">04 / 08</span>
+      <button class="icon-btn" type="button" aria-label="下一页" onclick="readerGo(1)">→</button>
+      <button class="btn btn-primary" type="button" onclick="openSlideshow()">▶ 播放</button>
+    </div>
+    <main id="reader-pages" class="reader-pages"></main>
+  </section>
+
+  <!-- 播放模式 -->
+  <section id="screen-slideshow" class="screen">
+    <button class="btn slide-exit" type="button" onclick="exitSlideshow()"><span class="kbd-hint">Esc</span>退出</button>
+    <article id="slide-stage" class="slide-stage"></article>
+    <div class="slide-controls">
+      <button class="icon-btn" type="button" onclick="changeSlide(-1)" aria-label="上一页">←</button>
+      <button id="autoplay-btn" class="icon-btn" type="button" onclick="toggleAutoplay()" aria-label="播放或暂停">▶</button>
+      <span id="slide-count" class="meta">01 / 08</span>
+      <button class="icon-btn" type="button" onclick="changeSlide(1)" aria-label="下一页">→</button>
+      <button class="icon-btn" type="button" onclick="togglePlaySettings()" aria-label="播放设置">⋯</button>
+      <button class="icon-btn" type="button" onclick="toggleFullscreen()" aria-label="全屏">⛶</button>
+    </div>
+    <div id="play-settings" class="play-settings">
+      <strong>播放设置</strong>
+      <div class="control-row"><label>播放方式</label><div class="segmented" id="play-mode"><button type="button" data-mode="manual" class="selected">手动</button><button type="button" data-mode="auto">自动</button></div></div>
+      <div class="control-row"><label for="play-interval">自动播放间隔</label><select id="play-interval" style="width:100%"><option value="5">5 秒</option><option value="8">8 秒</option><option value="12">12 秒</option></select></div>
+      <div class="control-row"><label for="play-transition">页面转场</label><select id="play-transition" style="width:100%"><option value="fade">淡入淡出</option><option value="none">无</option></select></div>
+    </div>
+  </section>
+
+  <!-- 新建故事 -->
+  <div id="create-modal" class="overlay" role="dialog" aria-modal="true" aria-label="创建城市故事">
+    <div class="modal">
+      <button class="icon-btn modal-close" type="button" aria-label="关闭" onclick="closeModal('create-modal')">×</button>
+      <section id="create-city-step" class="flow-step">
+        <p class="meta">第 1 步，共 2 步</p><h2>选择城市</h2><p class="intro">故事会收录在一座城市之下，之后仍可调整。</p>
+        <button class="city-choice" type="button" aria-pressed="true"><span><strong id="create-city-name">天津</strong><small id="create-city-meta">已有 1 个故事，21 张照片</small></span><span>✓</span></button>
+        <div class="field"><label for="new-city">或创建新城市</label><input id="new-city" class="input" placeholder="输入城市名称" /></div>
+        <div class="modal-actions"><button class="btn" type="button" onclick="closeModal('create-modal')">取消</button><button class="btn btn-primary" type="button" onclick="showCreateStep('story')">下一步</button></div>
+      </section>
+      <section id="create-story-step" class="flow-step" hidden>
+        <p class="meta">第 2 步，共 2 步 · <span id="create-city-label">天津</span></p><h2>创建影像故事</h2><p class="intro">先写下故事名称，再载入示例照片。演示流程不会上传文件。</p>
+        <div class="field"><label for="album-title">故事名称</label><input id="album-title" class="input" value="海河入夜" /></div>
+        <div class="field"><label for="album-subtitle">副标题（可选）</label><textarea id="album-subtitle" class="textarea">一些关于桥、灯光和夜晚的记录</textarea></div>
+        <div class="modal-actions"><button class="btn" type="button" onclick="showCreateStep('city')">上一步</button><button class="btn btn-primary" type="button" onclick="createStoryAndUpload()">载入示例照片</button></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 添加内容 -->
+  <div id="add-content-modal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="add-title">
+    <div class="modal">
+      <h2 id="add-title">添加内容</h2><p class="intro">内容会进入当前页面；这一版先支持追加随笔段落。</p>
+      <div class="stack" style="margin-top:22px;gap:8px">
+        <button class="btn" type="button" onclick="addEssay()">添加随笔段落</button>
+        <button class="btn" type="button" onclick="openPhotoPicker()">替换当前照片</button>
+      </div>
+      <div class="modal-actions"><button class="btn" type="button" onclick="closeModal('add-content-modal')">关闭</button></div>
+    </div>
+  </div>
+
+  <!-- 照片选择 -->
+  <div id="photo-picker" class="overlay" role="dialog" aria-modal="true" aria-labelledby="photo-picker-title">
+    <div class="modal" style="width:min(720px,100%)">
+      <button class="icon-btn modal-close" type="button" aria-label="关闭" onclick="closeModal('photo-picker')">×</button>
+      <h2 id="photo-picker-title">替换照片</h2><p id="photo-picker-intro" class="intro">从这 21 张天津照片中选择一张，作为当前页面的主图。</p>
+      <div id="photo-picker-grid" class="photo-picker-grid"></div>
+      <div class="modal-actions"><button class="btn" type="button" onclick="closeModal('photo-picker')">取消</button></div>
+    </div>
+  </div>
+
+  <div id="confirm-modal" class="overlay" role="alertdialog" aria-modal="true">
+    <div class="modal"><h2 id="confirm-title">删除这个页面？</h2><p id="confirm-copy" class="intro">删除后无法恢复。</p><div class="modal-actions"><button class="btn" type="button" onclick="closeModal('confirm-modal')">取消</button><button class="btn btn-primary" type="button" onclick="confirmAction()">确认删除</button></div></div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./content.js"></script>
+  <script src="./app.js"></script>
+</body>
 </html>
